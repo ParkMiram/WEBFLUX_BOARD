@@ -1,0 +1,8 @@
+#spring.application.name=webflux_board
+spring:
+  application:
+    name: webflux_board
+  r2dbc:
+    url: r2dbc:oracle:thin://localhost:1521/boards
+    username: SYSTEM
+    password: 1234
