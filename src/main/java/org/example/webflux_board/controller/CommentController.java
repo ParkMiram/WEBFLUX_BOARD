@@ -1,0 +1,41 @@
+package org.example.webflux_board.controller;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.example.webflux_board.model.Comment;
+import org.example.webflux_board.service.CommentService;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Slf4j
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/boards/{bid}/comments")
+public class CommentController {
+    private final CommentService commentService;
+
+    @GetMapping
+    public Flux<Comment> getComments(@PathVariable("bid") Long board_id){
+        return commentService.findAll(board_id);
+    }
+
+    @PostMapping
+    public Mono<Comment> createComment(@PathVariable("bid") Long board_id,
+                                       @RequestBody Comment comment) {
+        return commentService.save(board_id, comment);
+    }
+
+    @PutMapping("/{id}")
+    public Mono<Comment> updateComment(@PathVariable("bid") Long board_id,
+                                       @PathVariable("id") Long comment_id,
+                                       @RequestBody Comment comment) {
+        return commentService.update(board_id, comment_id, comment);
+    }
+
+    @DeleteMapping("/{id}")
+    public Mono<Void> deleteComment(@PathVariable("bid") Long board_id,
+                                    @PathVariable("id") Long comment_id) {
+        return commentService.delete(board_id, comment_id);
+    }
+}
