@@ -20,9 +20,20 @@ public class BoardController {
         return boardService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Mono<Board> getBoard(@PathVariable Long id) {
+        return boardService.findById(id);
+    }
+
     @PostMapping
     public Mono<Board> createBoard(@RequestBody Board board) {
         return boardService.save(board);
+    }
+
+    @PutMapping("/{id}")
+    public Mono<Board> updateBoard(@PathVariable Long id,
+                                   @RequestBody Board board) {
+        return boardService.update(id, board);
     }
 
     @DeleteMapping("/{id}")

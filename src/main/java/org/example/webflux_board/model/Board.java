@@ -1,15 +1,9 @@
 package org.example.webflux_board.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.relational.core.mapping.Table;
 
-import javax.annotation.processing.Generated;
 import java.time.LocalDateTime;
 
 @Getter
@@ -23,9 +17,8 @@ public class Board {
     private String board_author;
     private String board_title;
     private String board_content;
-    @CreatedDate
+    // created와 updqted는 db에서 default NOW() 줬음
     private LocalDateTime board_created_at;
-    @LastModifiedDate
     private LocalDateTime board_updated_at;
 
     public Board(String board_author,
