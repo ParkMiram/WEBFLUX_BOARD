@@ -56,7 +56,7 @@ public class BoardServiceImpl implements BoardService {
     }
     // 삭제 (단일)
     @Override
-    public Mono<Void> deleteById(Long id) {
+    public Mono<Void> delete(Long id) {
         return boardRepository.deleteById(id);
     }
     // 삭제 (복수)

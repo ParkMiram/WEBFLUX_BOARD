@@ -17,6 +17,6 @@ public interface BoardService {
     Mono<Board> update(Long id, Board board);
 
     // 삭제
-    Mono<Void> deleteById(Long id);
+    Mono<Void> delete(Long id);
     Mono<Void> deleteAll(Flux<Board> boards);
 }

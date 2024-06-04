@@ -38,6 +38,6 @@ public class BoardController {
 
     @DeleteMapping("/{id}")
     public Mono<Void> deleteBoard(@PathVariable Long id) {
-        return boardService.deleteById(id);
+        return boardService.delete(id);
     }
 }

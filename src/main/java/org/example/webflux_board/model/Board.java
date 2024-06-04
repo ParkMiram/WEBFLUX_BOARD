@@ -20,12 +20,4 @@ public class Board {
     // created와 updqted는 db에서 default NOW() 줬음
     private LocalDateTime board_created_at;
     private LocalDateTime board_updated_at;
-
-    public Board(String board_author,
-                 String board_title,
-                 String board_content) {
-        this.board_author = board_author;
-        this.board_title = board_title;
-        this.board_content = board_content;
-    }
 }
