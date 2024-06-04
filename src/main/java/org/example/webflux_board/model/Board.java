@@ -17,7 +17,6 @@ public class Board {
     private String board_author;
     private String board_title;
     private String board_content;
-    // created와 updqted는 db에서 default NOW() 줬음
     private LocalDateTime board_created_at;
     private LocalDateTime board_updated_at;
 }

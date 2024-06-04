@@ -19,7 +19,14 @@ public class BoardServiceImpl implements BoardService {
     // 저장 (단일)
     @Override
     public Mono<Board> save(Board board) {
-        return boardRepository.save(board);
+        Board saveBoard = Board.builder()
+                .board_author(board.getBoard_author())
+                .board_title(board.getBoard_title())
+                .board_content(board.getBoard_content())
+                .board_created_at(LocalDateTime.now())
+                .board_updated_at(LocalDateTime.now())
+                .build();
+        return boardRepository.save(saveBoard);
     }
     // 저장 (복수)
     @Override
