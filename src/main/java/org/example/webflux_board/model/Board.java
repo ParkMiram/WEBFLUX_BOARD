@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @Table("boards")
 public class Board {
     @Id
-    private Long board_id;
-    private String board_author;
-    private String board_title;
-    private String board_content;
-    private LocalDateTime board_created_at;
-    private LocalDateTime board_updated_at;
+    private Long boardId;
+    private String boardAuthor;
+    private String boardTitle;
+    private String boardContent;
+    private LocalDateTime boardCreatedAt;
+    private LocalDateTime boardUpdatedAt;
 }

@@ -17,12 +17,12 @@ import java.time.LocalDateTime;
 @Table("comments")
 public class Comment {
     @Id
-    private Long comment_id;
-    private String comment_author;
-    private String comment_content;
-    private LocalDateTime comment_created_at;
-    private LocalDateTime comment_updated_at;
+    private Long commentId;
+    private String commentAuthor;
+    private String commentContent;
+    private LocalDateTime commentCreatedAt;
+    private LocalDateTime commentUpdatedAt;
     // 외래키
     @Column("board_id")
-    private Long board_id;
+    private Long boardId;
 }

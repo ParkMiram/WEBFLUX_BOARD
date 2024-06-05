@@ -16,26 +16,26 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping
-    public Flux<Comment> getComments(@PathVariable("bid") Long board_id){
-        return commentService.findAll(board_id);
+    public Flux<Comment> getComments(@PathVariable("bid") Long boardId){
+        return commentService.findAll(boardId);
     }
 
     @PostMapping
-    public Mono<Comment> createComment(@PathVariable("bid") Long board_id,
+    public Mono<Comment> createComment(@PathVariable("bid") Long boardId,
                                        @RequestBody Comment comment) {
-        return commentService.save(board_id, comment);
+        return commentService.save(boardId, comment);
     }
 
     @PutMapping("/{id}")
-    public Mono<Comment> updateComment(@PathVariable("bid") Long board_id,
-                                       @PathVariable("id") Long comment_id,
+    public Mono<Comment> updateComment(@PathVariable("bid") Long boardId,
+                                       @PathVariable("id") Long commentId,
                                        @RequestBody Comment comment) {
-        return commentService.update(board_id, comment_id, comment);
+        return commentService.update(boardId, commentId, comment);
     }
 
     @DeleteMapping("/{id}")
-    public Mono<Void> deleteComment(@PathVariable("bid") Long board_id,
-                                    @PathVariable("id") Long comment_id) {
-        return commentService.delete(board_id, comment_id);
+    public Mono<Void> deleteComment(@PathVariable("bid") Long boardId,
+                                    @PathVariable("id") Long commentId) {
+        return commentService.delete(boardId, commentId);
     }
 }

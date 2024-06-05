@@ -18,34 +18,33 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
 
     @Override
-    public Mono<Comment> save(Long board_id, Comment comment) {
+    public Mono<Comment> save(Long boardId, Comment comment) {
         Comment saveComment = Comment.builder()
-                .board_id(board_id)
-                .comment_author(comment.getComment_author())
-                .comment_content(comment.getComment_content())
-                .comment_created_at(LocalDateTime.now())
-                .comment_updated_at(LocalDateTime.now())
+                .boardId(boardId)
+                .commentAuthor(comment.getCommentAuthor())
+                .commentContent(comment.getCommentContent())
+                .commentCreatedAt(LocalDateTime.now())
+                .commentUpdatedAt(LocalDateTime.now())
                 .build();
         return commentRepository.save(saveComment);
     }
 
     @Override
     public Flux<Comment> findAll(Long board_id) {
-        return commentRepository.findAll();
-//        return commentRepository.findByBoard_id(board_id);
+        return commentRepository.findByBoardId(board_id);
     }
 
     @Override
-    public Mono<Comment> update(Long board_id, Long id, Comment comment) {
+    public Mono<Comment> update(Long boardId, Long id, Comment comment) {
         return commentRepository.findById(id)
                 .flatMap(existingComment -> {
                     Comment updatedComment = Comment.builder()
-                            .board_id(existingComment.getBoard_id())
-                            .comment_id(existingComment.getComment_id())
-                            .comment_author(existingComment.getComment_author())
-                            .comment_content(comment.getComment_content() != null ? comment.getComment_content() : existingComment.getComment_content())
-                            .comment_created_at(existingComment.getComment_created_at())
-                            .comment_updated_at(LocalDateTime.now())
+                            .boardId(existingComment.getBoardId())
+                            .commentId(existingComment.getCommentId())
+                            .commentAuthor(existingComment.getCommentAuthor())
+                            .commentContent(comment.getCommentContent() != null ? comment.getCommentContent() : existingComment.getCommentContent())
+                            .commentCreatedAt(existingComment.getCommentCreatedAt())
+                            .commentUpdatedAt(LocalDateTime.now())
                             .build();
                     return commentRepository.save(updatedComment);
                 });
@@ -53,7 +52,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Mono<Void> delete(Long board_id, Long id) {
-//        return commentRepository.deleteByBoard_idAndComment_id(board_id, id);
-        return commentRepository.deleteById(id);
+        return commentRepository.deleteByBoardIdAndCommentId(board_id, id);
     }
 }
