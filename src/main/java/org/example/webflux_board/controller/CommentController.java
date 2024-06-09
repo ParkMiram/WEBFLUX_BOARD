@@ -28,14 +28,14 @@ public class CommentController {
 
     @PutMapping("/{id}")
     public Mono<Comment> updateComment(@PathVariable("bid") Long boardId,
-                                       @PathVariable("id") Long commentId,
+                                       @PathVariable("id") Long comment_id,
                                        @RequestBody Comment comment) {
-        return commentService.update(boardId, commentId, comment);
+        return commentService.update(boardId, comment_id, comment);
     }
 
     @DeleteMapping("/{id}")
     public Mono<Void> deleteComment(@PathVariable("bid") Long boardId,
-                                    @PathVariable("id") Long commentId) {
-        return commentService.delete(boardId, commentId);
+                                    @PathVariable("id") Long comment_id) {
+        return commentService.delete(boardId, comment_id);
     }
 }

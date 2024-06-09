@@ -21,17 +21,17 @@ public class CommentServiceImpl implements CommentService {
     public Mono<Comment> save(Long boardId, Comment comment) {
         Comment saveComment = Comment.builder()
                 .boardId(boardId)
-                .commentAuthor(comment.getCommentAuthor())
-                .commentContent(comment.getCommentContent())
-                .commentCreatedAt(LocalDateTime.now())
-                .commentUpdatedAt(LocalDateTime.now())
+                .comment_author(comment.getComment_author())
+                .comment_content(comment.getComment_content())
+                .comment_created_at(LocalDateTime.now())
+                .comment_updated_at(LocalDateTime.now())
                 .build();
         return commentRepository.save(saveComment);
     }
 
     @Override
-    public Flux<Comment> findAll(Long board_id) {
-        return commentRepository.findByBoardId(board_id);
+    public Flux<Comment> findAll(Long boardId) {
+        return commentRepository.findByBoardId(boardId);
     }
 
     @Override
@@ -40,18 +40,18 @@ public class CommentServiceImpl implements CommentService {
                 .flatMap(existingComment -> {
                     Comment updatedComment = Comment.builder()
                             .boardId(existingComment.getBoardId())
-                            .commentId(existingComment.getCommentId())
-                            .commentAuthor(existingComment.getCommentAuthor())
-                            .commentContent(comment.getCommentContent() != null ? comment.getCommentContent() : existingComment.getCommentContent())
-                            .commentCreatedAt(existingComment.getCommentCreatedAt())
-                            .commentUpdatedAt(LocalDateTime.now())
+                            .comment_id(existingComment.getComment_id())
+                            .comment_author(existingComment.getComment_author())
+                            .comment_content(comment.getComment_content() != null ? comment.getComment_content() : existingComment.getComment_content())
+                            .comment_created_at(existingComment.getComment_created_at())
+                            .comment_updated_at(LocalDateTime.now())
                             .build();
                     return commentRepository.save(updatedComment);
                 });
     }
 
     @Override
-    public Mono<Void> delete(Long board_id, Long id) {
-        return commentRepository.deleteByBoardIdAndCommentId(board_id, id);
+    public Mono<Void> delete(Long boardId, Long id) {
+        return commentRepository.deleteById(id);
     }
 }
