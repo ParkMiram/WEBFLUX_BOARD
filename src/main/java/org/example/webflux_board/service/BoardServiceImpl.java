@@ -2,6 +2,7 @@ package org.example.webflux_board.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.webflux_board.dto.BoardResponse;
 import org.example.webflux_board.model.Board;
 import org.example.webflux_board.repository.BoardRepository;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,11 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Mono<Board> save(Board board) {
         Board saveBoard = Board.builder()
-                .boardAuthor(board.getBoardAuthor())
-                .boardTitle(board.getBoardTitle())
-                .boardContent(board.getBoardContent())
-                .boardCreatedAt(LocalDateTime.now())
-                .boardUpdatedAt(LocalDateTime.now())
+                .board_author(board.getBoard_author())
+                .board_title(board.getBoard_title())
+                .board_content(board.getBoard_content())
+                .board_created_at(LocalDateTime.now())
+                .board_updated_at(LocalDateTime.now())
                 .build();
         return boardRepository.save(saveBoard);
     }
@@ -40,8 +41,8 @@ public class BoardServiceImpl implements BoardService {
     }
     // 조회 (복수)
     @Override
-    public Flux<Board> findAll() {
-        return boardRepository.findAll();
+    public Flux<BoardResponse> findAll() {
+        return boardRepository.findAll().map(BoardResponse::from);
     }
     // 수정
     @Override
@@ -51,12 +52,12 @@ public class BoardServiceImpl implements BoardService {
                     // flatMap: 게시판이 존재하는 경우
                     // existingBoard: 업데이트할 필드들을 객체에 복사하거나 업데이할 필드를 직접 변경 가능
                     Board updatedBoard = Board.builder()
-                            .boardId(existingBoard.getBoardId())
-                            .boardAuthor(existingBoard.getBoardAuthor())
-                            .boardTitle(board.getBoardTitle() != null ? board.getBoardTitle() : existingBoard.getBoardTitle())
-                            .boardContent(board.getBoardContent() != null ? board.getBoardContent() : existingBoard.getBoardContent())
-                            .boardCreatedAt(existingBoard.getBoardCreatedAt())
-                            .boardUpdatedAt(LocalDateTime.now())
+                            .board_id(existingBoard.getBoard_id())
+                            .board_author(existingBoard.getBoard_author())
+                            .board_title(board.getBoard_title() != null ? board.getBoard_title() : existingBoard.getBoard_title())
+                            .board_content(board.getBoard_content() != null ? board.getBoard_content() : existingBoard.getBoard_content())
+                            .board_created_at(existingBoard.getBoard_created_at())
+                            .board_updated_at(LocalDateTime.now())
                             .build();
                     return boardRepository.save(updatedBoard);
                 });

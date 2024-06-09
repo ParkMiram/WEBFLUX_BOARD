@@ -2,6 +2,7 @@ package org.example.webflux_board.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.webflux_board.dto.BoardResponse;
 import org.example.webflux_board.model.Board;
 import org.example.webflux_board.service.BoardService;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public Flux<Board> getBoards() {
+    public Flux<BoardResponse> getBoards() {
         return boardService.findAll();
     }
 

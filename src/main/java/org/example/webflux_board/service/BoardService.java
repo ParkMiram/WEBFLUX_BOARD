@@ -1,5 +1,6 @@
 package org.example.webflux_board.service;
 
+import org.example.webflux_board.dto.BoardResponse;
 import org.example.webflux_board.model.Board;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -11,7 +12,7 @@ public interface BoardService {
 
     // 조회
     Mono<Board> findById(Long id);
-    Flux<Board> findAll();
+    Flux<BoardResponse> findAll();
 
     // 수정
     Mono<Board> update(Long id, Board board);
